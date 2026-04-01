@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Designer Toggle</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 80px;
+      background: #f9f9f9;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    .switch {
+      position: relative;
+      width: 220px;
+      height: 80px;
+      background: #b8ffcc;
+      border-radius: 50px;
+      transition: background 0.4s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .circle {
+      position: absolute;
+      left: 10px;
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      font-size: 26px;
+    }
+
+    .toggle-text {
+      transition: color 0.4s ease;
+    }
+
+    .switch.active {
+      background: #ffe9a8;
+    }
+
+    .switch.active .circle {
+      left: calc(100% - 70px);
+    }
+
+    .toggle.active .left-text {
+      color: #aaa;
+    }
+
+    .toggle.active .right-text {
+      color: #000;
+    }
+
+    .toggle:not(.active) .left-text {
+      color: #000;
+    }
+
+    .toggle:not(.active) .right-text {
+      color: #aaa;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="toggle" id="toggle">
+    <span class="toggle-text left-text">Developer</span>
+    <div class="switch">
+      <div class="circle" id="circle">💻</div>
+    </div>
+    <span class="toggle-text right-text">Designer</span>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('toggle');
+    const switchBox = toggle.querySelector('.switch');
+    const circle = document.getElementById('circle');
+
+    toggle.addEventListener('click', () => {
+      switchBox.classList.toggle('active');
+      toggle.classList.toggle('active');
+
+      if (switchBox.classList.contains('active')) {
+        circle.textContent = '✏️';
+      } else {
+        circle.textContent = '💻';
+      }
+    });
+  </script>
+
+</body>
+</html>
